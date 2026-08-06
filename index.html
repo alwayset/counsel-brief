@@ -1,614 +1,582 @@
 <meta charset="utf-8">
 <title>The Counsel Brief — Susan (Tianshu) Lu</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="An interactive look at how Susan (Tianshu) Lu thinks — corporate & securities counsel, Columbia Law, Skadden, Silicon Valley.">
 <style>
   :root {
     --paper: #f5efe3;
-    --paper-dark: #ece4d2;
     --ink: #16222e;
-    --ink-soft: #3d4a57;
+    --ink-soft: #46535f;
     --redline: #9e2b25;
     --brass: #a5802f;
-    --brass-soft: #c9b17a;
-    --approve: #2e6e4e;
-    --mono: "SF Mono", "Cascadia Code", Menlo, Consolas, "Liberation Mono", monospace;
-    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+    --approve: #2c6b4c;
+    --line: rgba(22,34,46,.2);
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --pad: clamp(18px, 5.5vw, 52px);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
   body {
     font-family: var(--serif);
     background: var(--ink);
     color: var(--ink);
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
-    padding: clamp(8px, 2.5vw, 32px);
+    align-items: flex-start;
+    padding: clamp(0px, 2vw, 30px);
+    line-height: 1.5;
+    overflow-x: clip;
   }
-  /* ---- the paper sheet ---- */
+
   .sheet {
     position: relative;
     width: 100%;
-    max-width: 760px;
+    max-width: 720px;
     background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0 0.02 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0 0.02 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"),
       var(--paper);
-    box-shadow: 0 1px 3px rgba(0,0,0,.5), 0 24px 60px -12px rgba(0,0,0,.6);
-    border-radius: 3px;
-    overflow: hidden;
-    min-height: min(92vh, 900px);
+    box-shadow: 0 20px 60px -14px rgba(0,0,0,.65);
     display: flex;
     flex-direction: column;
+    min-height: 100dvh;
   }
-  .sheet::before { /* red margin rule, like a legal pad */
-    content: "";
-    position: absolute; top: 0; bottom: 0; left: clamp(20px, 5vw, 44px);
-    width: 1px; background: rgba(158,43,37,.35);
-    pointer-events: none;
-  }
-  .punch { /* two binder punch holes */
-    position: absolute; left: 50%; transform: translateX(-50%);
-    display: flex; gap: 220px; top: 12px; pointer-events: none;
-  }
-  .punch i {
-    width: 13px; height: 13px; border-radius: 50%;
-    background: var(--ink); opacity: .85;
-    box-shadow: inset 0 2px 3px rgba(0,0,0,.9);
-  }
+  @media (min-width: 700px) { .sheet { border-radius: 3px; min-height: 0; } }
 
-  /* ---- docket header ---- */
-  header.docket {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 34px clamp(24px, 6vw, 52px) 12px;
-    font-family: var(--mono);
-    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--ink-soft);
-    border-bottom: 1px solid rgba(22,34,46,.18);
+  /* docket bar */
+  .docket {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 18px var(--pad) 14px;
+    font-family: var(--mono); font-size: clamp(9px, 2.4vw, 10.5px);
+    letter-spacing: .14em; text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--line);
   }
   .docket .no { color: var(--redline); }
-  .steps { display: flex; gap: 7px; }
-  .steps i {
-    width: 26px; height: 4px; background: rgba(22,34,46,.15); border-radius: 2px;
-    transition: background .4s;
-  }
+  .steps { display: flex; gap: 6px; flex-shrink: 0; }
+  .steps i { width: clamp(16px, 5vw, 26px); height: 4px; background: rgba(22,34,46,.15); border-radius: 2px; transition: background .4s; }
   .steps i.on { background: var(--brass); }
   .steps i.done { background: var(--approve); }
 
-  /* ---- screens ---- */
-  .screen { display: none; flex: 1; flex-direction: column; padding: clamp(20px, 5vw, 44px) clamp(24px, 6vw, 52px) 36px; animation: rise .5s cubic-bezier(.2,.7,.2,1) both; }
-  .screen.active { display: flex; }
-  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  /* screens */
+  .screen { display: none; flex-direction: column; flex: 1; padding: clamp(22px, 6vw, 40px) var(--pad) clamp(26px, 7vw, 40px); }
+  .screen.active { display: flex; animation: rise .45s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 
-  .kicker {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .22em;
-    text-transform: uppercase; color: var(--redline); margin-bottom: 14px;
-  }
-  h1 {
-    font-size: clamp(30px, 6.4vw, 52px);
-    line-height: 1.04; font-weight: 600; letter-spacing: -.01em;
-    margin-bottom: 6px;
-  }
+  .kicker { font-family: var(--mono); font-size: clamp(9.5px, 2.6vw, 11px); letter-spacing: .18em; text-transform: uppercase; color: var(--redline); margin-bottom: 12px; line-height: 1.6; }
+  h1 { font-size: clamp(32px, 9vw, 54px); line-height: 1.03; font-weight: 600; letter-spacing: -.015em; text-wrap: balance; }
   h1 em { font-style: italic; color: var(--redline); }
-  h2 { font-size: clamp(22px, 4.6vw, 32px); line-height: 1.1; margin-bottom: 4px; }
-  .rule { height: 2px; background: var(--ink); margin: 18px 0; position: relative; }
-  .rule::after { content: ""; position: absolute; top: 4px; left: 0; right: 0; height: 1px; background: var(--ink); opacity: .5; }
-  p.lede { font-size: clamp(15px, 2.6vw, 18px); line-height: 1.55; color: var(--ink-soft); max-width: 56ch; }
-  .mono-note { font-family: var(--mono); font-size: 12px; line-height: 1.7; color: var(--ink-soft); letter-spacing: .02em; }
+  h2 { font-size: clamp(26px, 7.5vw, 36px); line-height: 1.08; font-weight: 600; margin-bottom: 8px; }
+  .lede { font-size: clamp(15.5px, 4.1vw, 17.5px); line-height: 1.55; color: var(--ink-soft); max-width: 58ch; }
+  .lede b, .lede strong { color: var(--ink); }
+  .rule { height: 2px; background: var(--ink); margin: 20px 0 4px; }
+  .rule::after { content: ""; display: block; margin-top: 3px; height: 1px; background: var(--ink); opacity: .45; }
 
-  /* stamps */
-  .stamp {
-    position: absolute; font-family: var(--mono); font-weight: 700;
-    border: 3px double currentColor; border-radius: 4px;
-    padding: 6px 14px; letter-spacing: .18em; text-transform: uppercase;
-    transform: rotate(-8deg); opacity: .8; pointer-events: none; font-size: 13px;
-  }
-  .stamp.confidential { color: var(--redline); top: 84px; right: clamp(14px, 5vw, 48px); animation: stampIn .5s .6s cubic-bezier(.2,2,.4,1) both; }
-  @keyframes stampIn { from { opacity: 0; transform: rotate(-8deg) scale(2.2); } to { opacity: .8; transform: rotate(-8deg) scale(1); } }
+  /* intro */
+  .card-id { border: 1.5px solid var(--ink); padding: clamp(16px, 5vw, 26px); margin: 20px 0 22px; background: rgba(255,255,255,.4); }
+  .card-id .who { font-size: clamp(19px, 5.4vw, 25px); font-weight: 600; line-height: 1.15; }
+  .card-id .role { font-size: clamp(15px, 4vw, 17px); color: var(--ink-soft); margin-top: 4px; }
+  .card-id .meta { font-family: var(--mono); font-size: clamp(10.5px, 2.9vw, 12px); letter-spacing: .04em; color: var(--ink-soft); margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--line); line-height: 1.9; }
+  .ex-list { list-style: none; margin: 20px 0 0; display: flex; flex-direction: column; gap: 0; }
+  .ex-list li { display: flex; gap: 12px; align-items: baseline; padding: 11px 0; border-bottom: 1px dashed var(--line); font-size: clamp(14px, 3.8vw, 16px); }
+  .ex-list b { font-family: var(--mono); font-size: clamp(10px, 2.7vw, 11.5px); letter-spacing: .1em; color: var(--redline); flex-shrink: 0; width: 5.6em; white-space: nowrap; text-transform: uppercase; }
 
   /* buttons */
   .btn {
-    font-family: var(--mono); font-size: 13px; letter-spacing: .16em; text-transform: uppercase;
-    background: var(--ink); color: var(--paper);
-    border: none; padding: 15px 26px; cursor: pointer; border-radius: 2px;
-    transition: transform .15s, box-shadow .15s, background .2s;
-    box-shadow: 3px 3px 0 rgba(158,43,37,.9);
+    font-family: var(--mono); font-size: clamp(12px, 3.2vw, 13px); letter-spacing: .14em; text-transform: uppercase;
+    background: var(--ink); color: var(--paper); border: none; border-radius: 2px;
+    padding: 17px 24px; min-height: 52px; cursor: pointer; text-align: center; text-decoration: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    box-shadow: 3px 3px 0 var(--redline);
+    transition: transform .12s, box-shadow .12s;
   }
-  .btn:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 rgba(158,43,37,.9); }
-  .btn:active { transform: translate(2px,2px); box-shadow: 0 0 0 rgba(158,43,37,.9); }
+  .btn:active { transform: translate(3px,3px); box-shadow: 0 0 0 var(--redline); }
+  .btn:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
   .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); box-shadow: none; }
-  .btn-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: auto; padding-top: 26px; }
+  @media (hover: hover) { .btn:hover { transform: translate(-1px,-1px); box-shadow: 5px 5px 0 var(--redline); } }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; padding-top: 26px; }
+  .btn-row .btn { flex: 1 1 auto; }
+  @media (max-width: 520px) { .btn-row { flex-direction: column; } .btn-row .btn { width: 100%; } }
 
-  /* intro caption block */
-  .caption {
-    border: 1.5px solid var(--ink); padding: clamp(16px, 4vw, 26px); margin: 22px 0 8px;
-    background: rgba(255,255,255,.35);
+  /* ── Exhibit A: the inbox ── */
+  .msg {
+    background: rgba(255,255,255,.55); border: 1px solid var(--line); border-left: 4px solid var(--brass);
+    padding: clamp(15px, 4.5vw, 22px); margin: 12px 0 16px;
   }
-  .caption .vs { font-family: var(--mono); font-size: 11px; letter-spacing: .2em; color: var(--ink-soft); margin: 10px 0; }
-  .caption strong { font-size: clamp(16px, 3vw, 20px); }
-  .exhibit-list { list-style: none; margin-top: 18px; }
-  .exhibit-list li {
-    font-family: var(--mono); font-size: 12.5px; letter-spacing: .04em;
-    padding: 9px 0; border-bottom: 1px dashed rgba(22,34,46,.25);
-    display: flex; gap: 14px; align-items: baseline; color: var(--ink-soft);
+  .msg .from { font-family: var(--mono); font-size: clamp(10px, 2.8vw, 11.5px); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+  .msg .from span { background: var(--ink); color: var(--paper); padding: 3px 8px; border-radius: 3px; letter-spacing: .06em; }
+  .msg .body { font-size: clamp(16px, 4.3vw, 19px); line-height: 1.5; }
+  .choices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  @media (max-width: 560px) { .choices { grid-template-columns: 1fr; } }
+  .choices button {
+    font-family: var(--mono); font-size: clamp(11.5px, 3vw, 12.5px); letter-spacing: .08em; text-transform: uppercase;
+    background: transparent; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 2px;
+    padding: 15px 10px; min-height: 54px; cursor: pointer; transition: background .15s, color .15s, opacity .2s;
+    display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center;
   }
-  .exhibit-list b { color: var(--redline); font-weight: 700; min-width: 74px; }
+  .choices button small { font-size: 9.5px; letter-spacing: .04em; opacity: .6; text-transform: none; font-family: var(--serif); font-size: 12px; }
+  .choices button:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+  @media (hover: hover) { .choices button:hover { background: var(--ink); color: var(--paper); } }
+  .choices button:disabled { opacity: .35; cursor: default; }
 
-  /* ---- exhibit A: clause document ---- */
-  .doc {
-    background: rgba(255,255,255,.5);
-    border: 1px solid rgba(22,34,46,.25);
-    padding: clamp(18px, 4vw, 28px);
-    font-size: clamp(14.5px, 2.5vw, 16.5px); line-height: 1.85;
-    margin: 16px 0 6px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  .note {
+    font-size: clamp(14px, 3.7vw, 15.5px); line-height: 1.55; margin-top: 16px;
+    padding: 14px 16px; border-left: 3px solid var(--brass); background: rgba(165,128,47,.09);
+    color: var(--ink-soft); min-height: 56px;
   }
-  .doc .head { font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); text-align: center; margin-bottom: 14px; }
-  .clause {
-    cursor: pointer; border-bottom: 2px solid rgba(165,128,47,.55);
-    transition: background .15s; padding: 1px 2px; border-radius: 2px;
-  }
-  .clause:hover { background: rgba(165,128,47,.18); }
-  .clause.safe-picked { border-bottom-color: transparent; background: rgba(22,34,46,.08); color: var(--ink-soft); cursor: default; }
-  .clause.trap-found {
-    background: rgba(158,43,37,.13); color: var(--redline); border-bottom: 2px solid var(--redline); cursor: default;
-    text-decoration: line-through; text-decoration-thickness: 1.5px;
-  }
-  .verdict-note {
-    font-family: var(--mono); font-size: 12.5px; line-height: 1.6; margin-top: 14px;
-    padding: 12px 14px; border-left: 3px solid var(--brass); background: rgba(165,128,47,.08);
-    min-height: 44px; color: var(--ink-soft); letter-spacing: .01em;
-  }
-  .verdict-note.good { border-left-color: var(--approve); background: rgba(46,110,78,.08); color: var(--approve); }
-  .verdict-note.bad  { border-left-color: var(--redline); background: rgba(158,43,37,.07); color: var(--redline); }
+  .note.good { border-left-color: var(--approve); background: rgba(44,107,76,.09); color: var(--approve); }
+  .note.bad { border-left-color: var(--redline); background: rgba(158,43,37,.08); color: var(--redline); }
+  .counter { font-family: var(--mono); font-size: clamp(10px, 2.7vw, 11px); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-soft); margin-top: 20px; }
 
-  /* ---- exhibit B: deal steps ---- */
-  .deal-board { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 4px; }
-  .deal-card {
-    display: flex; align-items: center; gap: 14px;
-    background: rgba(255,255,255,.55); border: 1.5px solid rgba(22,34,46,.35);
-    padding: 13px 16px; cursor: pointer; border-radius: 2px;
-    font-size: clamp(14px, 2.5vw, 16px);
-    transition: transform .15s, opacity .3s, border-color .2s, background .2s;
-    user-select: none; -webkit-user-select: none;
+  /* ── Exhibit B: deal order ── */
+  .deal { display: flex; flex-direction: column; gap: 9px; margin: 18px 0 0; }
+  .deal button {
+    display: flex; align-items: center; gap: 12px; text-align: left; width: 100%;
+    background: rgba(255,255,255,.55); border: 1.5px solid rgba(22,34,46,.3); border-radius: 2px;
+    padding: 14px 15px; min-height: 56px; cursor: pointer; font-family: var(--serif);
+    font-size: clamp(15px, 4vw, 16.5px); color: var(--ink); line-height: 1.35;
+    transition: border-color .15s, background .2s;
   }
-  .deal-card:hover { transform: translateX(4px); border-color: var(--ink); }
-  .deal-card .tag { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--ink-soft); border: 1px solid rgba(22,34,46,.3); padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
-  .deal-card.locked {
-    background: rgba(46,110,78,.1); border-color: var(--approve); cursor: default;
-    order: -1; transform: none;
+  .deal button:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+  @media (hover: hover) { .deal button:hover { border-color: var(--ink); } }
+  .deal .n {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .04em; flex-shrink: 0;
+    width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--line);
+    display: flex; align-items: center; justify-content: center; color: var(--ink-soft);
   }
-  .deal-card.locked .tag { background: var(--approve); color: var(--paper); border-color: var(--approve); }
-  .deal-card.shake { animation: shake .35s; border-color: var(--redline); }
-  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-7px); } 60% { transform: translateX(6px); } }
+  .deal button.locked { background: rgba(44,107,76,.1); border-color: var(--approve); cursor: default; }
+  .deal button.locked .n { background: var(--approve); color: var(--paper); border-color: var(--approve); font-weight: 700; }
+  .deal button.wrong { animation: shake .35s; border-color: var(--redline); }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 30% { transform: translateX(-6px); } 65% { transform: translateX(5px); } }
 
-  /* ---- exhibit C: filing sorter ---- */
+  /* ── Exhibit C: filings ── */
   .wire {
-    background: var(--ink); color: var(--paper);
-    font-family: var(--mono); padding: clamp(18px, 4vw, 26px);
-    margin: 16px 0; border-radius: 3px; min-height: 118px;
-    display: flex; flex-direction: column; gap: 8px; justify-content: center;
-    box-shadow: inset 0 0 40px rgba(0,0,0,.5);
+    background: var(--ink); color: var(--paper); border-radius: 3px;
+    padding: clamp(16px, 4.5vw, 24px); margin: 18px 0 14px; min-height: 132px;
+    display: flex; flex-direction: column; justify-content: center; gap: 10px;
   }
-  .wire .wl { font-size: 10.5px; letter-spacing: .2em; color: var(--brass-soft); text-transform: uppercase; }
-  .wire .wt { font-size: clamp(15px, 2.9vw, 19px); line-height: 1.45; animation: rise .35s both; }
-  .wire .wd { font-size: 11px; color: rgba(245,239,227,.55); min-height: 16px; }
-  .wire .wd.good { color: #7fc9a1; } .wire .wd.bad { color: #e0837c; }
-  .filing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .filing-grid button {
-    font-family: var(--mono); font-size: clamp(12px, 2.4vw, 14px); font-weight: 700; letter-spacing: .08em;
-    padding: 14px 6px; background: transparent; color: var(--ink);
-    border: 1.5px solid var(--ink); border-radius: 2px; cursor: pointer;
-    transition: all .15s;
+  .wire .lbl { font-family: var(--mono); font-size: clamp(9px, 2.5vw, 10px); letter-spacing: .18em; text-transform: uppercase; color: var(--brass); }
+  .wire .evt { font-size: clamp(17px, 4.6vw, 21px); line-height: 1.35; }
+  .wire .fb { font-family: var(--mono); font-size: clamp(11px, 3vw, 12px); line-height: 1.5; color: rgba(245,239,227,.5); min-height: 18px; }
+  .wire .fb.good { color: #83cfa6; } .wire .fb.bad { color: #e5908a; }
+  .forms { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  @media (min-width: 640px) { .forms { grid-template-columns: repeat(4, 1fr); } }
+  .forms button {
+    background: transparent; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 2px;
+    padding: 14px 8px; min-height: 62px; cursor: pointer; font-family: var(--serif);
+    font-size: clamp(14px, 3.7vw, 15px); font-weight: 600; line-height: 1.25;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    transition: background .15s, color .15s;
   }
-  .filing-grid button:hover { background: var(--ink); color: var(--paper); }
-  .filing-grid button:disabled { opacity: .4; cursor: default; }
-  .filing-grid span { display: block; font-weight: 400; font-size: 9.5px; letter-spacing: .06em; margin-top: 4px; opacity: .65; }
-  .wire-progress { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; color: var(--ink-soft); margin-bottom: 8px; text-transform: uppercase; }
+  .forms button small { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; opacity: .6; font-weight: 400; }
+  .forms button:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; }
+  @media (hover: hover) { .forms button:hover { background: var(--ink); color: var(--paper); } }
+  .forms button:disabled { opacity: .3; cursor: default; }
 
-  /* ---- verdict ---- */
-  .hired-stamp {
-    align-self: center; margin: 10px 0 6px;
-    font-family: var(--mono); font-weight: 700; font-size: clamp(30px, 7vw, 46px);
-    color: var(--approve); border: 5px double var(--approve); border-radius: 6px;
-    padding: 8px 30px; letter-spacing: .3em; text-transform: uppercase;
-    transform: rotate(-5deg);
-    animation: stampIn .45s .35s cubic-bezier(.2,2,.4,1) both;
+  /* ── verdict ── */
+  .stamp-hire {
+    align-self: center; font-family: var(--mono); font-weight: 700;
+    font-size: clamp(30px, 9vw, 46px); letter-spacing: .26em; text-indent: .26em; text-transform: uppercase;
+    color: var(--approve); border: 4px double var(--approve); border-radius: 5px;
+    padding: 10px 26px; transform: rotate(-4deg); margin: 6px 0 14px;
+    animation: pop .5s .3s cubic-bezier(.2,1.9,.4,1) both;
   }
-  .scorecard { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-align: center; color: var(--ink-soft); margin-bottom: 10px; text-transform: uppercase; }
-  .timeline { margin: 18px 0 4px; }
-  .tl-item {
-    display: grid; grid-template-columns: 86px 14px 1fr; gap: 0 12px;
-    position: relative; padding-bottom: 18px;
-  }
-  .tl-item:last-child { padding-bottom: 4px; }
-  .tl-item::before { content: ""; position: absolute; left: 92px; top: 14px; bottom: -2px; width: 1.5px; background: rgba(22,34,46,.28); }
-  .tl-item:last-child::before { display: none; }
-  .tl-year { font-family: var(--mono); font-size: 11.5px; letter-spacing: .1em; color: var(--redline); text-align: right; padding-top: 2px; }
-  .tl-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--brass); margin-top: 5px; z-index: 1; box-shadow: 0 0 0 3px var(--paper); }
-  .tl-body b { display: block; font-size: clamp(14.5px, 2.6vw, 16.5px); }
-  .tl-body span { font-size: 13px; color: var(--ink-soft); line-height: 1.5; display: block; margin-top: 2px; }
-  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 4px; }
-  .chips i {
-    font-style: normal; font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
-    border: 1px solid rgba(22,34,46,.4); padding: 6px 11px; border-radius: 14px; color: var(--ink-soft);
-    background: rgba(255,255,255,.4);
-  }
-  .sec-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--brass); margin-top: 20px; }
-  footer.colophon {
-    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
-    color: var(--ink-soft); text-align: center; padding: 14px 20px 26px; text-transform: uppercase; opacity: .75;
-  }
-  canvas#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+  @keyframes pop { from { opacity: 0; transform: rotate(-4deg) scale(1.55); } to { opacity: .95; transform: rotate(-4deg) scale(1); } }
+  .score { font-family: var(--mono); font-size: clamp(11px, 3vw, 12.5px); letter-spacing: .06em; text-align: center; color: var(--ink-soft); line-height: 1.6; max-width: 46ch; margin: 0 auto; }
+  .sect { font-family: var(--mono); font-size: clamp(9.5px, 2.6vw, 10.5px); letter-spacing: .2em; text-transform: uppercase; color: var(--brass); margin: 26px 0 14px; }
+  .tl { display: flex; flex-direction: column; gap: 0; }
+  .tl-row { display: grid; grid-template-columns: auto 1fr; gap: 0 14px; position: relative; padding-bottom: 20px; }
+  .tl-row:last-child { padding-bottom: 0; }
+  .tl-mark { display: flex; flex-direction: column; align-items: center; }
+  .tl-mark i { width: 9px; height: 9px; border-radius: 50%; background: var(--brass); margin-top: 7px; flex-shrink: 0; }
+  .tl-mark s { flex: 1; width: 1.5px; background: var(--line); margin-top: 5px; }
+  .tl-row:last-child .tl-mark s { display: none; }
+  .tl-yr { font-family: var(--mono); font-size: clamp(10px, 2.8vw, 11px); letter-spacing: .06em; color: var(--redline); }
+  .tl-t { font-size: clamp(16px, 4.3vw, 18px); font-weight: 600; line-height: 1.25; margin-top: 2px; }
+  .tl-d { font-size: clamp(14px, 3.8vw, 15.5px); color: var(--ink-soft); line-height: 1.5; margin-top: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chips i { font-style: normal; font-family: var(--mono); font-size: clamp(10px, 2.8vw, 11px); letter-spacing: .05em; border: 1px solid rgba(22,34,46,.35); background: rgba(255,255,255,.4); padding: 7px 11px; border-radius: 14px; color: var(--ink-soft); }
+  .colophon { font-family: var(--mono); font-size: clamp(9px, 2.5vw, 10px); letter-spacing: .12em; text-transform: uppercase; text-align: center; color: var(--ink-soft); opacity: .7; padding: 0 var(--pad) 22px; line-height: 1.8; }
+  canvas#cf { position: fixed; inset: 0; pointer-events: none; z-index: 9; }
 
-  @media (max-width: 560px) {
-    .punch { gap: 130px; }
-    .filing-grid { grid-template-columns: repeat(2, 1fr); }
-    .tl-item { grid-template-columns: 56px 14px 1fr; }
-    .tl-item::before { left: 62px; }
-    .stamp.confidential { top: 74px; font-size: 11px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   }
 </style>
 
 <div class="sheet">
-  <div class="punch"><i></i><i></i></div>
-  <header class="docket">
-    <span>Docket <span class="no">№ 2026-CL-01</span></span>
-    <div class="steps" id="steps"><i></i><i></i><i></i><i></i></div>
-  </header>
+  <div class="docket">
+    <span>Case <span class="no">№ 2026-CL-01</span></span>
+    <div class="steps" id="steps" aria-hidden="true"><i></i><i></i><i></i></div>
+  </div>
 
-  <!-- ═══════════ INTRO ═══════════ -->
-  <section class="screen active" id="s-intro">
-    <div class="stamp confidential">Confidential</div>
-    <div class="kicker">In the matter of your open position</div>
+  <!-- INTRO -->
+  <section class="screen active" id="s0">
+    <div class="kicker">Re: your open counsel role</div>
     <h1>The Counsel <em>Brief</em></h1>
-    <div class="caption">
-      <strong>THE SEARCH FOR EXCEPTIONAL IN-HOUSE COUNSEL</strong>
-      <div class="vs">— presented for your review by —</div>
-      <strong>SUSAN (TIANSHU) LU</strong>
-      <div class="mono-note" style="margin-top:6px">Corporate &amp; Securities · Columbia Law · Skadden · Silicon Valley</div>
+    <div class="card-id">
+      <div class="who">Susan (Tianshu) Lu</div>
+      <div class="role">Corporate &amp; Securities Counsel · San Francisco Bay Area</div>
+      <div class="meta">Columbia Law J.D. · Tsinghua LL.B.<br>Skadden · Shearman &amp; Sterling · PROCEPT BioRobotics</div>
     </div>
-    <p class="lede">You are the hiring manager. Instead of reading another PDF résumé, try the work itself — three two-minute exhibits drawn from Susan's actual practice. The evidence will speak for itself.</p>
-    <ul class="exhibit-list">
-      <li><b>Exhibit A</b> The Redline — catch the dangerous clause</li>
-      <li><b>Exhibit B</b> The Deal — run a cross-border M&amp;A to closing</li>
-      <li><b>Exhibit C</b> The Filing — keep a public company compliant</li>
+    <p class="lede">Instead of another PDF résumé, here are three short rounds of the actual job — the calls in-house counsel makes every week. No legal background needed. Takes about two minutes.</p>
+    <ul class="ex-list">
+      <li><b>Round 1</b><span>The Inbox — six questions from around the company</span></li>
+      <li><b>Round 2</b><span>The Deal — get an acquisition over the line</span></li>
+      <li><b>Round 3</b><span>The Filing — keep a public company out of trouble</span></li>
     </ul>
-    <div class="btn-row"><button class="btn" onclick="go('s-exa')">Open the file →</button></div>
+    <div class="btn-row"><button class="btn" onclick="go(1)">Start round 1 →</button></div>
   </section>
 
-  <!-- ═══════════ EXHIBIT A ═══════════ -->
-  <section class="screen" id="s-exa">
-    <div class="kicker">Exhibit A · Shearman &amp; Sterling, New York · 2019–2021</div>
-    <h2>The Redline</h2>
-    <p class="lede" style="font-size:15px">A draft just landed at 11:47 PM. Three terms are standard. One would burn the client. <strong>Click the clause you'd strike.</strong></p>
-    <div class="doc" id="doc-a"></div>
-    <div class="verdict-note" id="note-a">Awaiting your markup…</div>
-    <div class="btn-row"><button class="btn" id="btn-a" style="display:none" onclick="nextRoundA()">Next document →</button></div>
+  <!-- ROUND 1 — INBOX -->
+  <section class="screen" id="s1">
+    <div class="kicker">Round 1 · The job, most days</div>
+    <h2>The Inbox</h2>
+    <p class="lede">People across the company ask counsel for a yes. The skill isn't saying no — it's knowing which asks are fine, which need a fix, and which would genuinely hurt the company.</p>
+    <div class="counter" id="c1"></div>
+    <div class="msg" id="msg1">
+      <div class="from" id="from1"></div>
+      <div class="body" id="body1"></div>
+    </div>
+    <div class="choices">
+      <button onclick="pick1('go')">Go ahead<small>no problem</small></button>
+      <button onclick="pick1('fix')">Fix it first<small>yes, but change this</small></button>
+      <button onclick="pick1('stop')">Stop<small>this one's serious</small></button>
+    </div>
+    <div class="note" id="n1">Pick one. There's a right answer, and a reason.</div>
+    <div class="btn-row"><button class="btn" id="b1" hidden onclick="next1()">Next →</button></div>
   </section>
 
-  <!-- ═══════════ EXHIBIT B ═══════════ -->
-  <section class="screen" id="s-exb">
-    <div class="kicker">Exhibit B · Skadden, Arps · Beijing · 2021–2025</div>
+  <!-- ROUND 2 — DEAL -->
+  <section class="screen" id="s2">
+    <div class="kicker">Round 2 · Skadden, Beijing · 2021–2025</div>
     <h2>The Deal</h2>
-    <p class="lede" style="font-size:15px">A cross-border acquisition, jurisdictions on three continents, a hard deadline. Susan ran deals like this to signing and closing. <strong>Click the phases in the right order.</strong></p>
-    <div class="deal-board" id="deal-board"></div>
-    <div class="verdict-note" id="note-b">Six phases. One correct sequence. Go.</div>
-    <div class="btn-row"><button class="btn" id="btn-b" style="display:none" onclick="go('s-exc')">Deal closed — continue →</button></div>
+    <p class="lede">Your company is buying another one, across three countries, on a deadline. Susan ran deals like this from first call to final signature. <strong>Put the steps in order.</strong></p>
+    <div class="deal" id="deal"></div>
+    <div class="note" id="n2">Six steps. Tap them in the order they actually happen.</div>
+    <div class="btn-row"><button class="btn" id="b2" hidden onclick="go(3)">Deal closed →</button></div>
   </section>
 
-  <!-- ═══════════ EXHIBIT C ═══════════ -->
-  <section class="screen" id="s-exc">
-    <div class="kicker">Exhibit C · PROCEPT BioRobotics · Silicon Valley · 2025–present</div>
+  <!-- ROUND 3 — FILINGS -->
+  <section class="screen" id="s3">
+    <div class="kicker">Round 3 · PROCEPT BioRobotics · today</div>
     <h2>The Filing</h2>
-    <p class="lede" style="font-size:15px">You're counsel at a NASDAQ-listed company. Events hit the wire; the SEC expects the right form, on time. <strong>Sort each event.</strong> This is Susan's day job.</p>
+    <p class="lede">Public companies must tell investors certain things, on a clock. Miss one and it's an SEC problem. <strong>Match each event to the report it triggers.</strong> This is Susan's day job.</p>
     <div class="wire">
-      <span class="wl">Incoming — corporate event</span>
-      <span class="wt" id="wire-text"></span>
-      <span class="wd" id="wire-detail"></span>
+      <div class="lbl">Something just happened</div>
+      <div class="evt" id="evt"></div>
+      <div class="fb" id="fb"></div>
     </div>
-    <div class="wire-progress" id="wire-progress"></div>
-    <div class="filing-grid">
-      <button onclick="answerC('10-K')">10-K<span>annual report</span></button>
-      <button onclick="answerC('10-Q')">10-Q<span>quarterly</span></button>
-      <button onclick="answerC('8-K')">8-K<span>current report</span></button>
-      <button onclick="answerC('Form 4')">Form 4<span>insider · §16</span></button>
+    <div class="counter" id="c3"></div>
+    <div class="forms">
+      <button onclick="pick3('year')">Yearly report<small>form 10-K</small></button>
+      <button onclick="pick3('qtr')">Quarterly report<small>form 10-Q</small></button>
+      <button onclick="pick3('news')">Breaking news<small>form 8-K</small></button>
+      <button onclick="pick3('insider')">Insider trade<small>form 4</small></button>
     </div>
-    <div class="btn-row"><button class="btn" id="btn-c" style="display:none" onclick="showVerdict()">Render the verdict →</button></div>
+    <div class="btn-row"><button class="btn" id="b3" hidden onclick="verdict()">See the verdict →</button></div>
   </section>
 
-  <!-- ═══════════ VERDICT ═══════════ -->
-  <section class="screen" id="s-verdict">
-    <div class="kicker" style="text-align:center">All exhibits admitted · The record is closed</div>
-    <div class="hired-stamp">Hire</div>
-    <div class="scorecard" id="scorecard"></div>
+  <!-- VERDICT -->
+  <section class="screen" id="s4">
+    <div class="kicker" style="text-align:center">All three rounds complete</div>
+    <div class="stamp-hire">Hire</div>
+    <div class="score" id="score"></div>
     <div class="rule"></div>
 
-    <div class="sec-label">The record shows</div>
-    <div class="timeline">
-      <div class="tl-item"><span class="tl-year">2010–14</span><span class="tl-dot"></span>
-        <div class="tl-body"><b>Tsinghua University — LL.B.</b><span>Top 10 of class · Best Oralist, CIETAC Int'l Arbitration Moot · Jones Day Fellowship</span></div></div>
-      <div class="tl-item"><span class="tl-year">2016–19</span><span class="tl-dot"></span>
-        <div class="tl-body"><b>Columbia Law School — J.D.</b><span>Harlan Fiske Stone Scholar · American Review of International Arbitration</span></div></div>
-      <div class="tl-item"><span class="tl-year">2019–21</span><span class="tl-dot"></span>
-        <div class="tl-body"><b>Shearman &amp; Sterling — Associate, New York</b><span>M&amp;A execution for global clients</span></div></div>
-      <div class="tl-item"><span class="tl-year">2021–25</span><span class="tl-dot"></span>
-        <div class="tl-body"><b>Skadden, Arps — Associate, Beijing</b><span>Cross-border M&amp;A and capital markets for high-growth technology &amp; mobility companies — diligence to signing to closing</span></div></div>
-      <div class="tl-item"><span class="tl-year">2025—</span><span class="tl-dot"></span>
-        <div class="tl-body"><b>PROCEPT BioRobotics — Corporate Counsel</b><span>SEC reporting (10-K · 10-Q · 8-K · proxy · §16), board &amp; governance, commercial contracts for a NASDAQ-listed robotics company</span></div></div>
+    <div class="sect">The career behind those answers</div>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-mark"><i></i><s></s></div><div>
+        <div class="tl-yr">2010 – 2014</div><div class="tl-t">Tsinghua University — Law degree</div>
+        <div class="tl-d">Top 10 of her class. Won Best Oralist at the CIETAC international arbitration competition and a Jones Day fellowship.</div></div></div>
+      <div class="tl-row"><div class="tl-mark"><i></i><s></s></div><div>
+        <div class="tl-yr">2016 – 2019</div><div class="tl-t">Columbia Law School — J.D.</div>
+        <div class="tl-d">Harlan Fiske Stone Scholar (top academic honor). Editor on the American Review of International Arbitration.</div></div></div>
+      <div class="tl-row"><div class="tl-mark"><i></i><s></s></div><div>
+        <div class="tl-yr">2019 – 2021</div><div class="tl-t">Shearman &amp; Sterling — Associate, New York</div>
+        <div class="tl-d">Mergers and acquisitions for global clients.</div></div></div>
+      <div class="tl-row"><div class="tl-mark"><i></i><s></s></div><div>
+        <div class="tl-yr">2021 – 2025</div><div class="tl-t">Skadden, Arps — Associate, Beijing</div>
+        <div class="tl-d">One of the world's top deal firms. Advised high-growth technology and mobility companies on cross-border acquisitions and public offerings — from first diligence through closing.</div></div></div>
+      <div class="tl-row"><div class="tl-mark"><i></i><s></s></div><div>
+        <div class="tl-yr">2025 – now</div><div class="tl-t">PROCEPT BioRobotics — Corporate Counsel</div>
+        <div class="tl-d">In-house at a NASDAQ-listed surgical robotics company: all SEC reporting, the annual shareholder meeting, board and committee materials, company policies, and day-to-day commercial contracts.</div></div></div>
     </div>
 
-    <div class="sec-label">Why tech</div>
-    <p class="lede" style="font-size:14.5px; margin-top:8px">Seven years advising technology companies from both sides of the table — Big Law deal execution and in-house public-company practice. Trilingual (native Mandarin, full-professional English, elementary Japanese). Python-certified. Built for counsel roles where product moves faster than precedent.</p>
-
+    <div class="sect">Why an in-house tech role, now</div>
+    <p class="lede">Seven years advising technology companies from both sides of the table — big-firm deal execution, then public-company practice in-house. She's the counsel who unblocks the deal rather than sitting on it, and she's already fluent in the reporting, governance and contract work a growing tech company needs.</p>
     <div class="chips">
-      <i>SEC Reporting</i><i>Corporate Governance</i><i>Cross-border M&amp;A</i><i>Capital Markets</i>
-      <i>Commercial Contracts</i><i>US + Greater China</i><i>中文 · EN · 日本語</i><i>Python (Coursera)</i>
+      <i>SEC reporting</i><i>Corporate governance</i><i>M&amp;A</i><i>Commercial contracts</i>
+      <i>US + Greater China</i><i>Mandarin · English · 日本語</i><i>Python (Coursera)</i>
     </div>
 
-    <div class="btn-row" style="justify-content:center">
-      <a class="btn" style="text-decoration:none; display:inline-block" href="https://www.linkedin.com/in/susan-tianshu-lu-bb500b5b/" target="_blank" rel="noopener">Connect on LinkedIn</a>
-      <button class="btn ghost" onclick="location.reload()">Retry the exhibits</button>
+    <div class="btn-row">
+      <a class="btn" href="https://www.linkedin.com/in/susan-tianshu-lu-bb500b5b/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      <button class="btn ghost" onclick="location.reload()">Play again</button>
     </div>
   </section>
 
-  <footer class="colophon">Respectfully submitted · Susan (Tianshu) Lu · San Francisco Bay Area</footer>
+  <div class="colophon">Respectfully submitted · Susan (Tianshu) Lu · San Francisco Bay Area</div>
 </div>
-<canvas id="confetti"></canvas>
+<canvas id="cf" aria-hidden="true"></canvas>
 
 <script>
 (function () {
   "use strict";
-  var mistakes = 0;
-  var stepEls = document.querySelectorAll('#steps i');
-  var screenOrder = ['s-intro', 's-exa', 's-exb', 's-exc', 's-verdict'];
+  var misses = 0;
 
-  window.go = function (id) {
-    document.querySelectorAll('.screen').forEach(function (s) { s.classList.remove('active'); });
-    var el = document.getElementById(id);
-    el.classList.add('active');
-    var idx = screenOrder.indexOf(id) - 1; // exhibits start at index 1
-    stepEls.forEach(function (dot, i) {
-      dot.className = i < idx ? 'done' : (i === idx ? 'on' : '');
+  window.go = function (n) {
+    var all = document.querySelectorAll('.screen');
+    all.forEach(function (s) { s.classList.remove('active'); });
+    document.getElementById('s' + n).classList.add('active');
+    document.querySelectorAll('#steps i').forEach(function (d, i) {
+      d.className = n > i + 1 ? 'done' : (n === i + 1 ? 'on' : '');
     });
-    if (id === 's-verdict') stepEls.forEach(function (d) { d.className = 'done'; });
+    if (n === 4) document.querySelectorAll('#steps i').forEach(function (d) { d.className = 'done'; });
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (id === 's-exc') nextWire();
+    if (n === 3 && idx3 < 0) next3();
   };
 
-  /* ═══════ EXHIBIT A — redline hunt ═══════ */
-  var roundsA = [
+  /* ══ ROUND 1 — the inbox ══ */
+  var inbox = [
     {
-      head: "Mutual Non-Disclosure Agreement — §4, §7",
-      parts: [
-        { t: "Each party shall hold Confidential Information in strict confidence and use it solely for the Purpose. ", c: null },
-        { t: "Confidentiality obligations survive for three (3) years from disclosure", c: { trap: false, why: "Standard. A 3-year tail is market for a mutual NDA." } },
-        { t: ". Information ", c: null },
-        { t: "independently developed without use of Confidential Information is excluded", c: { trap: false, why: "Standard carve-out — you'd never sign an NDA without it." } },
-        { t: ". Recipient shall ", c: null },
-        { t: "indemnify Discloser for any and all losses arising hereunder, without limitation or cap", c: { trap: true, why: "STRUCK. Uncapped, one-way indemnity smuggled into an NDA — unlimited liability for a document that should carry almost none. Susan catches these before they're signed." } },
-        { t: ". This Agreement is ", c: null },
-        { t: "governed by the laws of the State of Delaware", c: { trap: false, why: "Fine. Delaware is as standard as it gets." } },
-        { t: ".", c: null }
-      ]
+      who: "Dana", team: "Enterprise Sales",
+      q: "Huge customer says they'll sign today if we delete the liability cap from the contract. Can I tell them yes?",
+      a: "fix",
+      r: {
+        fix: "Right. A liability cap is the ceiling on what we'd owe if something goes wrong — deleting it means unlimited exposure. But \"no\" loses the deal, so you counter with a bigger number and still close it.",
+        go: "That one signature would remove any ceiling on what the company could owe. Counsel who waves this through is expensive.",
+        stop: "Too blunt — the deal is winnable. Good counsel finds the number that closes it instead of blocking it."
+      }
     },
     {
-      head: "Share Purchase Agreement — Article VIII (Indemnification)",
-      parts: [
-        { t: "The Purchase Price shall be ", c: null },
-        { t: "$180,000,000, subject to customary working-capital adjustment", c: { trap: false, why: "Standard purchase-price mechanics." } },
-        { t: ". ", c: null },
-        { t: "Ten percent (10%) of the Purchase Price shall be held in escrow for eighteen (18) months", c: { trap: false, why: "Market escrow terms — nothing to strike." } },
-        { t: " as security for indemnification claims. ", c: null },
-        { t: "The representations and warranties of Seller shall not survive the Closing", c: { trap: true, why: "STRUCK. If the reps don't survive closing, the buyer discovers problems on day 30 and has no recourse — the escrow becomes decoration. This clause guts the whole indemnity article above it." } },
-        { t: ". Claims shall be resolved by ", c: null },
-        { t: "arbitration administered by the ICC seated in Singapore", c: { trap: false, why: "Common seat for cross-border deals — Susan's home turf (Best Oralist, CIETAC Moot)." } },
-        { t: "." }
-      ]
+      who: "Priya", team: "Product Marketing",
+      q: "Launch post goes live Friday. We're using a customer's logo and a nice quote from their VP. Good to go?",
+      a: "fix",
+      r: {
+        fix: "Right. Companies almost always need written sign-off before their logo or an employee's quote is used in someone else's marketing. One email now avoids a takedown demand on launch day.",
+        go: "Using a customer's brand without permission is how launch day turns into an angry call from their legal team.",
+        stop: "No need to kill it — this is a permission email, not a real risk."
+      }
+    },
+    {
+      who: "Marcus", team: "Engineering",
+      q: "Found an open-source library that saves us three weeks. Dropping it into the product today.",
+      a: "fix",
+      r: {
+        fix: "Right. Open source is free but not unconditional — some licenses require you to publish your own source code if you ship them in a product. Check the license, then almost always go ahead.",
+        go: "Some open-source licenses can force a company to publish its own proprietary code. Worth ten minutes to check which one this is.",
+        stop: "Overkill. Most libraries are perfectly safe — the answer is check the license, not ban the library."
+      }
+    },
+    {
+      who: "Tom", team: "Finance",
+      q: "One of our execs wants to buy company stock this week. He sat in the meeting where we agreed to acquire a competitor — that's still unannounced.",
+      a: "stop",
+      r: {
+        stop: "Right. Trading on important news the public doesn't have yet is insider trading. This one isn't a negotiation — it waits until the news is out.",
+        go: "This is textbook insider trading. Waving it through puts the executive and the company in real legal jeopardy.",
+        fix: "There's no version of this that gets fixed. He waits until the acquisition is public."
+      }
+    },
+    {
+      who: "Alex", team: "Recruiting",
+      q: "Great candidate from a competitor. She offered to bring her old team's customer list with her as a head start.",
+      a: "stop",
+      r: {
+        stop: "Right. That list is her old employer's confidential property. Taking it invites a trade-secrets lawsuit — and hire her anyway, just without the file.",
+        go: "Accepting a competitor's confidential customer list is how companies get sued for trade-secret theft.",
+        fix: "Nothing to fix — the list simply can't come. The candidate still can."
+      }
+    },
+    {
+      who: "Sam", team: "Operations",
+      q: "Renewing our office snack vendor. Same contract we've signed the last three years, no changes, on our standard template.",
+      a: "go",
+      r: {
+        go: "Right. Not everything needs legal review. Counsel who treats routine renewals like a merger becomes the bottleneck everyone routes around.",
+        fix: "There's nothing here to fix — this is exactly the kind of routine paper that should move without legal friction.",
+        stop: "Blocking a snack renewal is how legal earns a reputation as the department of no."
+      }
     }
   ];
-  var roundA = 0;
+  var idx1 = 0, done1 = false;
 
-  function renderA() {
-    var r = roundsA[roundA];
-    var doc = document.getElementById('doc-a');
-    var html = '<div class="head">' + r.head + '</div><div>';
-    r.parts.forEach(function (p, i) {
-      if (p.c) html += '<span class="clause" data-i="' + i + '">' + p.t + '</span>';
-      else html += p.t;
-    });
-    html += '</div>';
-    doc.innerHTML = html;
-    document.getElementById('note-a').textContent = "Awaiting your markup…";
-    document.getElementById('note-a').className = 'verdict-note';
-    document.getElementById('btn-a').style.display = 'none';
-    doc.querySelectorAll('.clause').forEach(function (el) {
-      el.addEventListener('click', function () { pickA(el, r.parts[+el.dataset.i].c); });
-    });
+  function render1() {
+    var m = inbox[idx1];
+    done1 = false;
+    document.getElementById('c1').textContent = "Message " + (idx1 + 1) + " of " + inbox.length;
+    document.getElementById('from1').innerHTML = '<span>' + m.who + '</span>' + m.team;
+    document.getElementById('body1').textContent = '"' + m.q + '"';
+    var n = document.getElementById('n1');
+    n.textContent = "Pick one. There's a right answer, and a reason.";
+    n.className = 'note';
+    document.getElementById('b1').hidden = true;
+    document.querySelectorAll('.choices button').forEach(function (b) { b.disabled = false; });
   }
 
-  function pickA(el, c) {
-    var note = document.getElementById('note-a');
-    if (el.classList.contains('safe-picked') || document.querySelector('#doc-a .trap-found')) return;
-    if (c.trap) {
-      el.classList.add('trap-found');
-      note.textContent = "✓ " + c.why;
-      note.className = 'verdict-note good';
-      var btn = document.getElementById('btn-a');
-      btn.style.display = 'inline-block';
-      if (roundA === roundsA.length - 1) {
-        btn.textContent = "Exhibit A admitted →";
-      }
+  window.pick1 = function (choice) {
+    if (done1) return;
+    var m = inbox[idx1], n = document.getElementById('n1');
+    if (choice === m.a) {
+      done1 = true;
+      n.textContent = "✓ " + m.r[choice];
+      n.className = 'note good';
+      document.querySelectorAll('.choices button').forEach(function (b) { b.disabled = true; });
+      var b = document.getElementById('b1');
+      b.hidden = false;
+      b.textContent = idx1 === inbox.length - 1 ? "Round 1 complete →" : "Next message →";
     } else {
-      mistakes++;
-      el.classList.add('safe-picked');
-      note.textContent = "✗ " + c.why + " Keep looking.";
-      note.className = 'verdict-note bad';
+      misses++;
+      n.textContent = "✗ " + m.r[choice];
+      n.className = 'note bad';
     }
-  }
-
-  window.nextRoundA = function () {
-    if (roundA < roundsA.length - 1) { roundA++; renderA(); }
-    else go('s-exb');
   };
 
-  /* ═══════ EXHIBIT B — deal sequence ═══════ */
-  var dealSteps = [
-    { n: 1, t: "Sign the NDA & letter of intent", tag: "kickoff" },
-    { n: 2, t: "Run due diligence across jurisdictions", tag: "diligence" },
-    { n: 3, t: "Draft & negotiate the definitive agreements", tag: "drafting" },
-    { n: 4, t: "Signing — the deal is announced", tag: "signing" },
-    { n: 5, t: "Clear regulatory approvals & closing conditions", tag: "conditions" },
-    { n: 6, t: "Closing — funds flow, shares transfer", tag: "closing" }
-  ];
-  var dealNext = 1;
-  var dealFeedback = [
-    "NDA first — nobody opens the data room without one.",
-    "Diligence underway. Susan coordinated diligence across three jurisdictions at Skadden.",
-    "Definitive agreements in negotiation. This is where the redlines fly.",
-    "Signed. Press release out. Now the hard part — getting to close.",
-    "Conditions cleared. Cross-border deals live or die on this phase.",
-    "Closed. Funds flowed, shares transferred. That's deal execution."
-  ];
+  window.next1 = function () {
+    if (idx1 < inbox.length - 1) { idx1++; render1(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    else go(2);
+  };
 
-  function renderB() {
-    var board = document.getElementById('deal-board');
-    var shuffled = [3, 6, 1, 5, 2, 4]; // fixed shuffle — fair for everyone
-    board.innerHTML = '';
-    shuffled.forEach(function (n) {
-      var s = dealSteps[n - 1];
-      var d = document.createElement('div');
-      d.className = 'deal-card';
-      d.dataset.n = s.n;
-      d.innerHTML = '<span class="tag">' + s.tag + '</span><span>' + s.t + '</span>';
-      d.addEventListener('click', function () { pickB(d); });
-      board.appendChild(d);
+  /* ══ ROUND 2 — the deal ══ */
+  var steps = [
+    { n: 1, t: "Both sides sign a confidentiality agreement so they can open their books to each other" },
+    { n: 2, t: "Dig through the other company's contracts, finances and legal risks" },
+    { n: 3, t: "Draft and negotiate the actual purchase agreement" },
+    { n: 4, t: "Both sides sign it — the deal is announced publicly" },
+    { n: 5, t: "Clear the government approvals required in every country involved" },
+    { n: 6, t: "Money moves, ownership transfers, deal done" }
+  ];
+  var why2 = [
+    "Nobody opens their books without this in place first.",
+    "This is where you find the problems — before you've agreed to a price.",
+    "Where the real negotiating happens: price, protections, who carries which risk.",
+    "Signed and announced. Now the hard part: actually getting to the finish line.",
+    "Regulators in each country get a say. Cross-border deals live or die here.",
+    "Closed. That's the whole job — first call to final signature."
+  ];
+  var want = 1;
+
+  function render2() {
+    var box = document.getElementById('deal');
+    box.innerHTML = '';
+    [3, 6, 1, 5, 2, 4].forEach(function (i) {
+      var s = steps[i - 1];
+      var b = document.createElement('button');
+      b.dataset.n = s.n;
+      b.innerHTML = '<span class="n">?</span><span>' + s.t + '</span>';
+      b.addEventListener('click', function () { pick2(b); });
+      box.appendChild(b);
     });
   }
 
-  function pickB(card) {
-    if (card.classList.contains('locked')) return;
-    var note = document.getElementById('note-b');
-    var n = +card.dataset.n;
-    if (n === dealNext) {
-      card.classList.add('locked');
-      card.style.order = n - 10; // keep chronological order at top
-      card.querySelector('.tag').textContent = "phase " + n;
-      note.textContent = "✓ " + dealFeedback[n - 1];
-      note.className = 'verdict-note good';
-      dealNext++;
-      if (dealNext > 6) {
-        note.textContent = "✓ Signed, sealed, closed. Susan managed transaction timelines exactly like this — diligence through closing.";
-        document.getElementById('btn-b').style.display = 'inline-block';
+  function pick2(btn) {
+    if (btn.classList.contains('locked')) return;
+    var n = document.getElementById('n2'), got = +btn.dataset.n;
+    if (got === want) {
+      btn.classList.add('locked');
+      btn.querySelector('.n').textContent = got;
+      btn.style.order = got - 20;
+      n.textContent = "✓ Step " + got + ". " + why2[got - 1];
+      n.className = 'note good';
+      want++;
+      if (want > 6) {
+        n.textContent = "✓ Signed and closed. Susan did this for a living at Skadden — deals like this, across borders, on deadlines.";
+        document.getElementById('b2').hidden = false;
       }
     } else {
-      mistakes++;
-      card.classList.add('shake');
-      setTimeout(function () { card.classList.remove('shake'); }, 380);
-      note.textContent = "✗ Not yet — something has to happen before that.";
-      note.className = 'verdict-note bad';
+      misses++;
+      btn.classList.add('wrong');
+      setTimeout(function () { btn.classList.remove('wrong'); }, 380);
+      n.textContent = "✗ Not yet — something else has to happen before that.";
+      n.className = 'note bad';
     }
   }
 
-  /* ═══════ EXHIBIT C — filing sorter ═══════ */
-  var wires = [
-    { t: "Audited full-year financials are complete.", a: "10-K", d: "10-K — the annual report. Susan prepares and reviews these." },
-    { t: "The CEO announces her resignation.", a: "8-K", d: "8-K, due within 4 business days — departure of a principal officer." },
-    { t: "The CFO buys 5,000 shares of company stock.", a: "Form 4", d: "Form 4 under Section 16 — due within 2 business days." },
-    { t: "Q2 earnings are ready to report.", a: "10-Q", d: "10-Q — the quarterly report." },
-    { t: "The company signs a material acquisition agreement.", a: "8-K", d: "8-K — entry into a material definitive agreement." },
-    { t: "A director sells 2,000 shares.", a: "Form 4", d: "Form 4 — insiders report trades within 2 business days." },
-    { t: "The company enters a new $100M credit facility.", a: "8-K", d: "8-K — material definitive agreement / direct financial obligation." },
-    { t: "Q3 numbers are in.", a: "10-Q", d: "10-Q — three a year; the fourth quarter folds into the 10-K." }
+  /* ══ ROUND 3 — filings ══ */
+  var events = [
+    { e: "The company's audited results for the whole year are finalized.", a: "year", w: "The yearly report (10-K) — the big one. Susan prepares and reviews these." },
+    { e: "The CEO resigns, effective immediately.", a: "news", w: "Breaking news (8-K) — investors must be told within four business days." },
+    { e: "The CFO buys 5,000 shares of company stock.", a: "insider", w: "Insider trade (Form 4) — executives report their own trades within two business days." },
+    { e: "Results for the second quarter are ready to go out.", a: "qtr", w: "Quarterly report (10-Q) — three of these a year; the fourth is folded into the yearly report." },
+    { e: "The company signs an agreement to acquire a competitor.", a: "news", w: "Breaking news (8-K) — a major agreement investors would want to know about." },
+    { e: "A board member sells 2,000 shares.", a: "insider", w: "Insider trade (Form 4) — same two-day clock, board members included." }
   ];
-  var wireIdx = -1, wireLock = false;
+  var names = { year: "the yearly report", qtr: "the quarterly report", news: "breaking news", insider: "an insider trade" };
+  var idx3 = -1, lock3 = false;
 
-  function nextWire() {
-    wireIdx++;
-    wireLock = false;
-    var wt = document.getElementById('wire-text');
-    var prog = document.getElementById('wire-progress');
-    document.getElementById('wire-detail').textContent = '';
-    document.getElementById('wire-detail').className = 'wd';
-    if (wireIdx >= wires.length) {
-      wt.textContent = "Wire clear. Every filing on time — the SEC has no notes.";
-      prog.textContent = "compliance record: clean";
-      document.querySelectorAll('.filing-grid button').forEach(function (b) { b.disabled = true; });
-      document.getElementById('btn-c').style.display = 'inline-block';
+  function next3() {
+    idx3++; lock3 = false;
+    var evt = document.getElementById('evt'), fb = document.getElementById('fb');
+    fb.textContent = ''; fb.className = 'fb';
+    if (idx3 >= events.length) {
+      evt.textContent = "Wire clear. Every report filed on time — nothing for the SEC to ask about.";
+      document.getElementById('c3').textContent = "Compliance record: clean";
+      document.querySelectorAll('.forms button').forEach(function (b) { b.disabled = true; });
+      document.getElementById('b3').hidden = false;
       return;
     }
-    wt.style.animation = 'none'; void wt.offsetWidth; wt.style.animation = '';
-    wt.textContent = "“" + wires[wireIdx].t + "”";
-    prog.textContent = "event " + (wireIdx + 1) + " of " + wires.length;
+    evt.textContent = '"' + events[idx3].e + '"';
+    document.getElementById('c3').textContent = "Event " + (idx3 + 1) + " of " + events.length;
   }
 
-  window.answerC = function (choice) {
-    if (wireLock || wireIdx >= wires.length) return;
-    var w = wires[wireIdx];
-    var det = document.getElementById('wire-detail');
-    if (choice === w.a) {
-      wireLock = true;
-      det.textContent = "✓ " + w.d;
-      det.className = 'wd good';
-      setTimeout(nextWire, 1400);
+  window.pick3 = function (choice) {
+    if (lock3 || idx3 >= events.length || idx3 < 0) return;
+    var ev = events[idx3], fb = document.getElementById('fb');
+    if (choice === ev.a) {
+      lock3 = true;
+      fb.textContent = "✓ " + ev.w;
+      fb.className = 'fb good';
+      setTimeout(next3, 1600);
     } else {
-      mistakes++;
-      det.textContent = "✗ Not " + choice + " — try again.";
-      det.className = 'wd bad';
+      misses++;
+      fb.textContent = "✗ Not " + names[choice] + " — try another.";
+      fb.className = 'fb bad';
     }
   };
 
-  /* ═══════ VERDICT ═══════ */
-  window.showVerdict = function () {
-    go('s-verdict');
-    var grades = [
-      [0, "Flawless review — 0 misses. You may also be qualified for this job."],
-      [2, "Sharp eye — MISSES_N slips. Susan would still let you sit in on the board meeting."],
-      [5, "MISSES_N misses — this is why you hire a securities lawyer."],
-      [Infinity, "MISSES_N misses — the case for hiring Susan rests."]
-    ];
-    for (var i = 0; i < grades.length; i++) {
-      if (mistakes <= grades[i][0]) {
-        document.getElementById('scorecard').textContent =
-          grades[i][1].replace('MISSES_N', mistakes);
-        break;
-      }
-    }
-    confettiBurst();
+  /* ══ VERDICT ══ */
+  window.verdict = function () {
+    go(4);
+    var s = document.getElementById('score'), m = misses;
+    var line;
+    if (m === 0) line = "A perfect round — zero wrong calls. You may be qualified for this job yourself.";
+    else if (m <= 2) line = m + (m === 1 ? " wrong call" : " wrong calls") + ". Sharp instincts — you'd catch most of what matters.";
+    else if (m <= 5) line = m + " wrong calls. Which is roughly the point: this is why companies hire someone who does it full time.";
+    else line = m + " wrong calls. The case for hiring Susan rests.";
+    s.textContent = line;
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) confetti();
   };
 
-  function confettiBurst() {
-    var cv = document.getElementById('confetti'), ctx = cv.getContext('2d');
-    cv.width = innerWidth; cv.height = innerHeight;
-    var colors = ['#a5802f', '#9e2b25', '#2e6e4e', '#16222e', '#c9b17a'];
-    var bits = [];
-    for (var i = 0; i < 110; i++) {
-      bits.push({
-        x: innerWidth / 2 + (Math.random() - .5) * 200,
-        y: innerHeight * 0.28,
-        vx: (Math.random() - .5) * 11,
-        vy: -Math.random() * 10 - 3,
-        s: Math.random() * 7 + 3,
-        r: Math.random() * Math.PI,
-        vr: (Math.random() - .5) * .3,
-        c: colors[i % colors.length]
-      });
-    }
-    var frames = 0;
-    (function tick() {
-      ctx.clearRect(0, 0, cv.width, cv.height);
+  function confetti() {
+    var cv = document.getElementById('cf'), ctx = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
+    cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
+    ctx.scale(dpr, dpr);
+    var cols = ['#a5802f', '#9e2b25', '#2c6b4c', '#16222e', '#c9b17a'], bits = [];
+    for (var i = 0; i < 90; i++) bits.push({
+      x: innerWidth / 2 + (Math.random() - .5) * Math.min(240, innerWidth * .6),
+      y: innerHeight * .3,
+      vx: (Math.random() - .5) * 10, vy: -Math.random() * 9 - 3,
+      s: Math.random() * 6 + 3, r: Math.random() * 6, vr: (Math.random() - .5) * .3,
+      c: cols[i % cols.length]
+    });
+    var f = 0;
+    (function loop() {
+      ctx.clearRect(0, 0, innerWidth, innerHeight);
       bits.forEach(function (b) {
         b.x += b.vx; b.y += b.vy; b.vy += .32; b.r += b.vr;
         ctx.save(); ctx.translate(b.x, b.y); ctx.rotate(b.r);
-        ctx.fillStyle = b.c; ctx.fillRect(-b.s / 2, -b.s / 2, b.s, b.s * .6);
-        ctx.restore();
+        ctx.fillStyle = b.c; ctx.fillRect(-b.s / 2, -b.s / 2, b.s, b.s * .6); ctx.restore();
       });
-      if (++frames < 150) requestAnimationFrame(tick);
-      else ctx.clearRect(0, 0, cv.width, cv.height);
+      if (++f < 140) requestAnimationFrame(loop);
+      else ctx.clearRect(0, 0, innerWidth, innerHeight);
     })();
   }
 
-  renderA();
-  renderB();
+  render1();
+  render2();
 })();
 </script>
